@@ -32,7 +32,6 @@ class AddForm extends Component {
       .catch((err) => {
         console.log(err);
       });
-      document.getElementById("reset").reset();
 
   };
 
@@ -132,17 +131,15 @@ class AddForm extends Component {
               onChange={this.changeHandler}
             />
           </div>
-          <div className="p-d-flex p-jc-evenly">
+          <div className="p-d-flex p-jc-between">
             <Button
-              icon="pi pi-check"
               value="submit"
               className="p-button-rounded p-button-success mt-4"
               onClick={this.submitHandler}
-            />
+            >Submit</Button>
             <Button
-              icon="pi pi-times"
               className="p-button-danger p-button-rounded mt-4"
-            />
+            >Cancel</Button>
           </div>
         </form>
       </div>
