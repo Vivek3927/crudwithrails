@@ -6,8 +6,8 @@ import axios from "axios";
 
 class AddForm extends Component {
   state = {
-    firstname: "",
-    lastname: "",
+    first_name: "",
+    last_name: "",
     email: "",
     contact: "",
     address: "",
@@ -15,30 +15,33 @@ class AddForm extends Component {
     position: "",
   };
 
+
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+
+
   submitHandler = (event) => {
     event.preventDefault();
-    console.log(this.state);
     axios
       .post("http://localhost:3001/api/employees", this.state)
       .then((res) => {
-        console.log(res);
+        window.alert("Your Form is Submitted");
       })
       .catch((err) => {
         console.log(err);
       });
+      document.getElementById("reset").reset();
+
   };
 
-  onCancelButton = () => {
-    document.getElementById("reset").reset();
-  };
+
 
   render() {
     const {
-      firstname,
-      lastname,
+      first_name,
+      last_name,
       email,
       contact,
       address,
@@ -57,8 +60,8 @@ class AddForm extends Component {
               className="form-control"
               placeholder="firstname"
               id="fName"
-              name="firstname"
-              value={firstname}
+              name="first_name"
+              value={first_name}
               onChange={this.changeHandler}
             />
           </div>
@@ -68,8 +71,8 @@ class AddForm extends Component {
               type="text"
               className="form-control"
               placeholder="lastname"
-              name="lastname"
-              value={lastname}
+              name="last_name"
+              value={last_name}
               onChange={this.changeHandler}
             />
           </div>
@@ -87,7 +90,7 @@ class AddForm extends Component {
           <div className="form-group ">
             <label>Contact :</label>
             <input
-              type="number"
+              type="digit"
               pattern="[0-9]*"
               className="form-control"
               placeholder="contact_number"
@@ -110,7 +113,7 @@ class AddForm extends Component {
           <div className="form-group ">
             <label>Employee_id :</label>
             <input
-              type="number"
+              type="digit"
               className="form-control"
               placeholder="employee_id"
               name="employee_id"
@@ -139,7 +142,6 @@ class AddForm extends Component {
             <Button
               icon="pi pi-times"
               className="p-button-danger p-button-rounded mt-4"
-              onClick={this.onCancelButton}
             />
           </div>
         </form>
