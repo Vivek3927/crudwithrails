@@ -2,41 +2,34 @@ import React, { Component } from "react";
 import { Button } from "primereact/button";
 import axios from "axios";
 
-// import {Link} from 'react-router-dom'
+const initialState = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  contact: "",
+  address: "",
+  employee_id: "",
+  position: "",
+};
 
 class AddForm extends Component {
-  state = {
-    first_name: "",
-    last_name: "",
-    email: "",
-    contact: "",
-    address: "",
-    employee_id: "",
-    position: "",
-  };
-
+  state = initialState;
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-
-
   submitHandler = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/api/employees", this.state)
+      .post("http://localhost:3001/api/employees/", this.state)
       .then((res) => {
         window.alert("Your Form is Submitted");
       })
       .catch((err) => {
         console.log(err);
       });
-
   };
-
-
-
   render() {
     const {
       first_name,
@@ -51,14 +44,13 @@ class AddForm extends Component {
       <div className="container bg-light p-3">
         <h2 className="text-center">Registration Form</h2>
         <hr />
-        <form className="m-5" id="reset">
+        <form className="m-5" id="empForm">
           <div className="form-group ">
-            <label htmlFor="fName">FirstName :</label>
+            <label>FirstName :</label>
             <input
               type="text"
               className="form-control"
               placeholder="firstname"
-              id="fName"
               name="first_name"
               value={first_name}
               onChange={this.changeHandler}
@@ -133,13 +125,12 @@ class AddForm extends Component {
           </div>
           <div className="p-d-flex p-jc-between">
             <Button
-              value="submit"
+              type="submit"
               className="p-button-rounded p-button-success mt-4"
-              onClick={this.submitHandler}
-            >Submit</Button>
-            <Button
-              className="p-button-danger p-button-rounded mt-4"
-            >Cancel</Button>
+              onClick={(e) => this.submitHandler(e)}
+            >
+              Submit
+            </Button>
           </div>
         </form>
       </div>
