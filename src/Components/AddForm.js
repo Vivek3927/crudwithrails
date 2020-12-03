@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "primereact/button";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 const initialState = {
   first_name: "",
@@ -10,6 +11,7 @@ const initialState = {
   address: "",
   employee_id: "",
   position: "",
+  redirect: false,
 };
 
 class AddForm extends Component {
@@ -24,6 +26,7 @@ class AddForm extends Component {
     axios
       .post("http://localhost:3001/api/employees/", this.state)
       .then((res) => {
+        this.setState({ redirect: true });
         window.alert("Your Form is Submitted");
       })
       .catch((err) => {
@@ -40,6 +43,9 @@ class AddForm extends Component {
       employee_id,
       position,
     } = this.state;
+    if (this.state.redirect) {
+      return <Redirect to="/Datas" />;
+    }
     return (
       <div className="container bg-light p-3">
         <h2 className="text-center">Registration Form</h2>

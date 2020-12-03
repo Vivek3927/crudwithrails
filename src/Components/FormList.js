@@ -41,6 +41,10 @@ class FormList extends Component {
     }
   };
 
+  handleView = (info) => {
+    this.props.history.push(`/view/Data/${info.id}`);
+  };
+
   render() {
     const { datas, error } = this.state;
     if (this.state.redirect) {
@@ -66,19 +70,15 @@ class FormList extends Component {
         <div className="container">
           <hr />
           <div className="col-md">
-            <Table size="sm" striped bordered hover variant="dark">
+            <Table striped bordered hover className="table">
               <thead>
                 <tr>
                   <th>Id</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Email</th>
-                  <th>Contact</th>
-                  <th>Address</th>
-                  <th>Emp id</th>
-                  <th>Position</th>
-                  <th>Edit List</th>
-                  <th>Delete List</th>
+                  <th className="d-flex justify-content-center">Action</th>
+                  <th>Views</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,19 +88,13 @@ class FormList extends Component {
                     <td>{info.first_name}</td>
                     <td>{info.last_name}</td>
                     <td>{info.email}</td>
-                    <td>{info.contact}</td>
-                    <td>{info.address}</td>
-                    <td>{info.employee_id}</td>
-                    <td>{info.position}</td>
-                    <td>
+                    <td className="d-flex justify-content-around">
                       <Button
                         variant="warning"
                         onClick={() => this.handleEdit(info)}
                       >
                         Edit
                       </Button>
-                    </td>
-                    <td>
                       <Button
                         variant="danger"
                         onClick={() => {
@@ -108,6 +102,16 @@ class FormList extends Component {
                         }}
                       >
                         Delete
+                      </Button>
+                    </td>
+                    <td>
+                      <Button
+                        variant="secondary"
+                        onClick={() => {
+                          this.handleView(info);
+                        }}
+                      >
+                        View
                       </Button>
                     </td>
                   </tr>

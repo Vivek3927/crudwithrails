@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Button } from "primereact/button";
+import { Redirect } from "react-router-dom";
 
 export default class EditTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
       editData: [],
+      redirect: false,
     };
   }
 
@@ -31,11 +33,10 @@ export default class EditTable extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     const id = this.props.match.params.id;
-    console.log(id);
     axios
       .put("http://localhost:3001/api/employees/" + id, this.state)
       .then((res) => {
-        this.setState({ editData: res });
+        this.setState({ editData: res, redirect: true });
         window.alert("Form Updated");
       })
       .catch((err) => {
@@ -44,6 +45,9 @@ export default class EditTable extends Component {
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/Datas" />;
+    }
     return (
       <div>
         <div className="container bg-light p-3">
