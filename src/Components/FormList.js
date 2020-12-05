@@ -46,11 +46,11 @@ class FormList extends Component {
   };
 
   render() {
-    const { datas, error } = this.state;
-    if (this.state.redirect) {
-      return <Redirect to="/Datas" />;
+    const { datas, error, redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/" />;
     }
-    if (this.state.error) {
+    if (error) {
       return (
         <div>
           <h6 style={{ fontSize: "16px", textAlign: "center", color: "red" }}>
@@ -59,7 +59,7 @@ class FormList extends Component {
         </div>
       );
     }
-    if (this.state.datas.length === 0 && []) {
+    if (datas.length === 0 && []) {
       return (
         <h2 style={{ color: "gray", textAlign: "center" }}>
           No Data Available
