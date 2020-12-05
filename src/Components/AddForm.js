@@ -33,6 +33,11 @@ class AddForm extends Component {
         console.log(err);
       });
   };
+
+  CancelHandler = () => {
+    this.setState({ redirect: true });
+  };
+
   render() {
     const {
       first_name,
@@ -61,6 +66,10 @@ class AddForm extends Component {
               value={first_name}
               onChange={this.changeHandler}
             />
+            <p>
+              Username must be lowercase including numbers and contain 5 - 12
+              characters
+            </p>
           </div>
           <div className="form-group ">
             <label>LastName :</label>
@@ -136,6 +145,13 @@ class AddForm extends Component {
               onClick={(e) => this.submitHandler(e)}
             >
               Submit
+            </Button>
+            <Button
+              type="submit"
+              className="p-button-rounded p-button-danger mt-4"
+              onClick={() => this.CancelHandler()}
+            >
+              Cancel
             </Button>
           </div>
         </form>

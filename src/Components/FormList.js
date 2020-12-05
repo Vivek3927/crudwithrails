@@ -27,7 +27,7 @@ class FormList extends Component {
   handleEdit = (info) => {
     // console.log(info);
     // this.props.history.push("/EditData", { editDatas: datas });
-    this.props.history.push(`/editData/${info.id}`);
+    this.props.history.push(`/edit/${info.id}`);
   };
 
   handleDelete = (deleteId) => {
@@ -42,13 +42,13 @@ class FormList extends Component {
   };
 
   handleView = (info) => {
-    this.props.history.push(`/view/Data/${info.id}`);
+    this.props.history.push(`/view/data/${info.id}`);
   };
 
   render() {
     const { datas, error } = this.state;
     if (this.state.redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/Datas" />;
     }
     if (this.state.error) {
       return (

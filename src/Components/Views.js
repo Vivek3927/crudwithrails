@@ -17,7 +17,6 @@ export default class Views extends Component {
     axios
       .get("http://localhost:3001/api/employees/" + id)
       .then((res) => {
-        console.log(res);
         this.setState({ viewData: res.data });
       })
       .catch((err) => {
@@ -55,19 +54,21 @@ export default class Views extends Component {
                 </tr>
               </thead>
               <tbody>
-                <td>{viewData.id}</td>
-                <td>{viewData.first_name}</td>
-                <td>{viewData.last_name}</td>
-                <td>{viewData.email}</td>
-                <td>{viewData.contact}</td>
-                <td>{viewData.address}</td>
-                <td>{viewData.employee_id}</td>
-                <td>{viewData.position}</td>
-                <td>
-                  <Button variant="secondary" onClick={this.handleBackToData}>
-                    Back to Data
-                  </Button>
-                </td>
+                <tr>
+                  <td>{viewData.id}</td>
+                  <td>{viewData.first_name}</td>
+                  <td>{viewData.last_name}</td>
+                  <td>{viewData.email}</td>
+                  <td>{viewData.contact}</td>
+                  <td>{viewData.address}</td>
+                  <td>{viewData.employee_id}</td>
+                  <td>{viewData.position}</td>
+                  <td>
+                    <Button variant="secondary" onClick={this.handleBackToData}>
+                      Back to Data
+                    </Button>
+                  </td>
+                </tr>
               </tbody>
             </Table>
           ) : (

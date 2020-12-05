@@ -1,0 +1,10 @@
+.Link {
+    color: rgb(191, 235, 236);
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.Link:hover {
+    color: cadetblue;
+    font-size: 30px;
+}

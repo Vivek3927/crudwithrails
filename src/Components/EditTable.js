@@ -44,6 +44,10 @@ export default class EditTable extends Component {
       });
   };
 
+  CancelHandler = () => {
+    this.setState({ redirect: true });
+  };
+
   render() {
     if (this.state.redirect) {
       return <Redirect to="/Datas" />;
@@ -139,6 +143,13 @@ export default class EditTable extends Component {
                 onClick={(e) => this.submitHandler(e)}
               >
                 Submit
+              </Button>
+              <Button
+                type="submit"
+                className="p-button-rounded p-button-danger mt-4"
+                onClick={() => this.CancelHandler()}
+              >
+                Cancel
               </Button>
             </div>
           </form>

@@ -1,18 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import 'primeflex/primeflex.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+import "primeflex/primeflex.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import 'primereact/resources/themes/saga-blue/theme.css';
-import 'primeicons/primeicons.css';
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primeicons/primeicons.css";
 
-
-
-
-ReactDOM.render(
-    <App />
-,  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
