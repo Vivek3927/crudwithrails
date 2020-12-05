@@ -66,10 +66,6 @@ class AddForm extends Component {
               value={first_name}
               onChange={this.changeHandler}
             />
-            <p>
-              Username must be lowercase including numbers and contain 5 - 12
-              characters
-            </p>
           </div>
           <div className="form-group ">
             <label>LastName :</label>
