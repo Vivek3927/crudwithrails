@@ -37,9 +37,9 @@ export default class Views extends Component {
 
     return (
       <div className="container">
-        <div className="col-md-5">
+        <div className="col-md-auto">
           {viewData ? (
-            <Table>
+            <Table striped bordered hover responsive className="mt-5">
               <thead>
                 <tr>
                   <th>Id</th>

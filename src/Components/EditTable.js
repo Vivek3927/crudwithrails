@@ -26,7 +26,6 @@ export default class EditTable extends Component {
   }
 
   changeHandler = (e) => {
-    // const inpField = this.state.inputField;
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -34,7 +33,7 @@ export default class EditTable extends Component {
     event.preventDefault();
     const id = this.props.match.params.id;
     axios
-      .put("http://localhost:3001/api/employees/" + id, this.state)
+      .put("https://servercrud.herokuapp.com/api/employees/" + id, this.state)
       .then((res) => {
         this.setState({ editData: res, redirect: true });
         window.alert("Form Updated");
@@ -54,105 +53,125 @@ export default class EditTable extends Component {
     }
     return (
       <div>
-        <div className="container bg-light p-3">
+        <div className="container p-3">
           <h2 className="text-center">Registration Form</h2>
           <hr />
-          <form className="m-5" id="empForm">
-            <div className="form-group ">
-              <label>FirstName :</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="firstname"
-                name="first_name"
-                defaultValue={this.state.editData.first_name}
-                onChange={this.changeHandler}
-              />
-            </div>
-            <div className="form-group ">
-              <label>LastName :</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="lastname"
-                name="last_name"
-                onChange={this.changeHandler}
-                defaultValue={this.state.editData.last_name}
-              />
-            </div>
-            <div className="form-group ">
-              <label>Email :</label>
-              <input
-                type="email"
-                className="form-control"
-                placeholder="e-mail"
-                name="email"
-                defaultValue={this.state.editData.email}
-                onChange={this.changeHandler}
-              />
-            </div>
-            <div className="form-group ">
-              <label>Contact :</label>
-              <input
-                type="digit"
-                pattern="[0-9]*"
-                className="form-control"
-                placeholder="contact_number"
-                name="contact"
-                defaultValue={this.state.editData.contact}
-                onChange={this.changeHandler}
-              />
-            </div>
-            <div className="form-group ">
-              <label>Address :</label>
-              <textarea
-                type="text"
-                className="form-control"
-                placeholder="address"
-                name="address"
-                defaultValue={this.state.editData.address}
-                onChange={this.changeHandler}
-              />
-            </div>
-            <div className="form-group ">
-              <label>Employee_id :</label>
-              <input
-                type="digit"
-                className="form-control"
-                placeholder="employee_id"
-                name="employee_id"
-                defaultValue={this.state.editData.employee_id}
-                onChange={this.changeHandler}
-              />
-            </div>
-            <div className="form-group ">
-              <label>Position :</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="position"
-                name="position"
-                defaultValue={this.state.editData.position}
-                onChange={this.changeHandler}
-              />
-            </div>
-            <div className="p-d-flex p-jc-between">
-              <Button
-                type="submit"
-                className="p-button-rounded p-button-success mt-4"
+          <div className="container ">
+            <div className="col-md-8 mx-auto bg-light p-2 ">
+              <form
+                className="m-5"
+                id="empForm"
                 onClick={(e) => this.submitHandler(e)}
               >
-                Submit
-              </Button>
-              <Button
-                type="submit"
-                className="p-button-rounded p-button-danger mt-4"
-                onClick={() => this.CancelHandler()}
-              >
-                Cancel
-              </Button>
+                <div className="form-group ">
+                  <label>FirstName :</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="firstname"
+                    name="first_name"
+                    pattern="^[a-zA-Z\s]+$"
+                    required
+                    defaultValue={this.state.editData.first_name}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <div className="form-group ">
+                  <label>LastName :</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="lastname"
+                    name="last_name"
+                    pattern="^[a-zA-Z\s]+$"
+                    required
+                    defaultValue={this.state.editData.last_name}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <div className="form-group ">
+                  <label>Email :</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="e-mail"
+                    name="email"
+                    pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                    required
+                    defaultValue={this.state.editData.email}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <div className="form-group ">
+                  <label>Contact :</label>
+                  <input
+                    type="digit"
+                    className="form-control"
+                    placeholder="contact_number"
+                    name="contact"
+                    pattern="^\d{10}$"
+                    required
+                    defaultValue={this.state.editData.contact}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <div className="form-group ">
+                  <label>Address :</label>
+                  <textarea
+                    type="text"
+                    className="form-control"
+                    placeholder="address"
+                    name="address"
+                    pattern="^[A-Za-z0-9'\.\-\s\,]$"
+                    required
+                    defaultValue={this.state.editData.address}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <div className="form-group ">
+                  <label>Employee_id :</label>
+                  <input
+                    type="digit"
+                    className="form-control"
+                    placeholder="employee_id"
+                    name="employee_id"
+                    pattern="\d{1,5}"
+                    required
+                    disabled
+                    defaultValue={this.state.editData.employee_id}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <div className="form-group ">
+                  <label>Position :</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="position"
+                    name="position"
+                    pattern="^[a-zA-Z\s]+$"
+                    required
+                    defaultValue={this.state.editData.position}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <div className="p-d-flex p-jc-between">
+                  <Button
+                    type="submit"
+                    className="p-button-rounded p-button-success mt-4"
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    className="p-button-rounded p-button-danger mt-4"
+                    onClick={() => this.CancelHandler()}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     );
