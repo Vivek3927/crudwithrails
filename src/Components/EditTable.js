@@ -15,7 +15,7 @@ export default class EditTable extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     axios
-      .get("https://servercrud.herokuapp.com/api/employees/" + id)
+      .get("https://localhost:3001/api/employees/" + id)
       .then((res) => {
         this.setState({ editData: res.data });
       })
@@ -33,7 +33,7 @@ export default class EditTable extends Component {
     event.preventDefault();
     const id = this.props.match.params.id;
     axios
-      .put("https://servercrud.herokuapp.com/api/employees/" + id, this.state)
+      .put("https://localhost:3001/api/employees/" + id, this.state)
       .then((res) => {
         this.setState({ editData: res, redirect: true });
         window.alert("Form Updated");
@@ -67,7 +67,7 @@ export default class EditTable extends Component {
                     placeholder="firstname"
                     name="first_name"
                     defaultValue={this.state.editData.first_name}
-                    pattern="^[a-zA-Z\s]+$"
+                    pattern={"^[a-zA-Z]$"}
                     required
                     onChange={this.changeHandler}
                   />

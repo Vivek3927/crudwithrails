@@ -14,7 +14,7 @@ class FormList extends Component {
   }
   componentDidMount() {
     axios
-      .get("https://servercrud.herokuapp.com/api/employees")
+      .get("http://localhost:3001/api/employees")
       .then((res) => {
         this.setState({ datas: res.data });
       })
@@ -33,7 +33,7 @@ class FormList extends Component {
   handleDelete = (deleteId) => {
     if (window.confirm("Are You Sure?")) {
       axios
-        .delete("https://servercrud.herokuapp.com/api/employees/" + deleteId)
+        .delete("http://localhost:3001/api/employees/" + deleteId)
         .then((remainData) => {
           this.setState({ datas: remainData, redirect: true });
         })
