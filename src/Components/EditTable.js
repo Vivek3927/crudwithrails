@@ -58,11 +58,7 @@ export default class EditTable extends Component {
           <hr />
           <div className="container ">
             <div className="col-md-8 mx-auto bg-light p-2 ">
-              <form
-                className="m-5"
-                id="empForm"
-                onClick={(e) => this.submitHandler(e)}
-              >
+              <form className="m-5" id="empForm">
                 <div className="form-group ">
                   <label>FirstName :</label>
                   <input
@@ -70,9 +66,9 @@ export default class EditTable extends Component {
                     className="form-control"
                     placeholder="firstname"
                     name="first_name"
+                    defaultValue={this.state.editData.first_name}
                     pattern="^[a-zA-Z\s]+$"
                     required
-                    defaultValue={this.state.editData.first_name}
                     onChange={this.changeHandler}
                   />
                 </div>
@@ -159,6 +155,7 @@ export default class EditTable extends Component {
                   <Button
                     type="submit"
                     className="p-button-rounded p-button-success mt-4"
+                    onClick={(e) => this.submitHandler(e)}
                   >
                     Submit
                   </Button>
