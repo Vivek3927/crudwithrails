@@ -15,7 +15,7 @@ export default class EditTable extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     axios
-      .get("http://localhost:3001/api/employees/" + id)
+      .get("https://servercrud.herokuapp.com/api/employees/" + id)
       .then((res) => {
         this.setState({ editData: res.data });
       })
